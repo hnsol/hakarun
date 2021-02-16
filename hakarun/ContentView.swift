@@ -70,13 +70,17 @@ extension UIApplication {
 
 struct ContentView: View {
     @State var theText: String = ""
+    @State var apdText: String = ""
     @State var strTemp: String = "36.1"
+    @State var strApnd: String = ""
     @State var theDate = Date()
 
+//    if; let data = loadText("sample.txt") {
+//        theText = data
+//    }
     // 日付書式
     var dateFormat1: DateFormatter {
         let df = DateFormatter()
-//        df.locale = Locale(identifier: "ja_JP")
         df.dateFormat = "yyyy-MM-dd"
         return df
     }
@@ -110,16 +114,24 @@ struct ContentView: View {
                                 Text("保存")
                             }
                         }
+                        // 消去ボタン
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button {
+                                theText = ""
+                            } label: {
+                                Text("消去")
+                            }
+                        }
                     }
             }
-            .frame(height: 300.0)
-
+            .frame(height: 400.0)
+            
             HStack {
                 DatePicker("日付", selection: $theDate, displayedComponents: .date)
                     .frame(width: 170.0)
                     .environment(\.locale, Locale(identifier: "ja_JP"))
                     .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-
+                
                 HStack {
                     Label("体温", systemImage: "thermometer")
                     TextField("体温", text: $strTemp)
@@ -130,19 +142,32 @@ struct ContentView: View {
                         .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
                 }
                 
-                }
+                
+                
+            }
             
+            Text(dateFormat1.string(from: theDate) + " " + strTemp)
+                .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            Button(action: {
+                theText = theText + "\n" + dateFormat1.string(from: theDate) + " " + strTemp
+            }) {
+                Text("追記")
+            }
+            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             
-            Text(dateFormat1.string(from: theDate))
-//            Text(theDate.description(with: Locale(identifier: "ja_JP")))
-//                .font(.footnote)
+            // strApnd = dateFormat1.string(from: theDate) + " " + strTemp
+            //                Text("\(strTemp)")
+            //                Text("\(strApnd)")
+            //            Text(theDate.description(with: Locale(identifier: "ja_JP")))
+            //                .font(.footnote)
         }
         
-        
     }
-            
-        
+    
+    
 }
+
+        
 
 
 struct ContentView_Previews: PreviewProvider {
