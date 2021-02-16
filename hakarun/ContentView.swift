@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 // 保存ファイルへのURLをつくる
 func docURL(_ fileName:String) -> URL? {
@@ -67,17 +68,18 @@ extension UIApplication {
 }
 
 
+struct TextforEditor {
+    
+}
+
 
 struct ContentView: View {
-    @State var theText: String = ""
-    @State var apdText: String = ""
+//    @State var theText: String = ""
+//    @State var strApnd: String = ""
+    @State var theText: String = loadText("sample.txt") ?? ""
     @State var strTemp: String = "36.1"
-    @State var strApnd: String = ""
     @State var theDate = Date()
 
-//    if; let data = loadText("sample.txt") {
-//        theText = data
-//    }
     // 日付書式
     var dateFormat1: DateFormatter {
         let df = DateFormatter()
@@ -96,15 +98,15 @@ struct ContentView: View {
                     .navigationTitle("はかるん")
                     .toolbar {
                         // 読み込みボタン
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            Button {
-                                if let data = loadText("sample.txt") {
-                                    theText = data
-                                }
-                            } label: {
-                                Text("読み込み")
-                            }
-                        }
+//                        ToolbarItem(placement: .navigationBarTrailing) {
+//                            Button {
+//                                if let data = loadText("sample.txt") {
+//                                    theText = data
+//                                }
+//                            } label: {
+//                                Text("読み込み")
+//                            }
+//                        }
                         // 保存ボタン
                         ToolbarItem(placement: .navigationBarTrailing) {
                             Button {
@@ -124,11 +126,11 @@ struct ContentView: View {
                         }
                     }
             }
-            .frame(height: 400.0)
+//            .frame(height: 400.0)
             
             HStack {
                 DatePicker("日付", selection: $theDate, displayedComponents: .date)
-                    .frame(width: 170.0)
+                    .frame(width: 160.0)
                     .environment(\.locale, Locale(identifier: "ja_JP"))
                     .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
                 
@@ -140,26 +142,28 @@ struct ContentView: View {
                         .border(/*@START_MENU_TOKEN@*/Color.gray/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
                         .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                         .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
+                        .multilineTextAlignment(/*@START_MENU_TOKEN@*/.trailing/*@END_MENU_TOKEN@*/)
                 }
-                
-                
-                
-            }
-            
-            Text(dateFormat1.string(from: theDate) + " " + strTemp)
-                .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-            Button(action: {
-                theText = theText + "\n" + dateFormat1.string(from: theDate) + " " + strTemp
-            }) {
-                Text("追記")
             }
             .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             
-            // strApnd = dateFormat1.string(from: theDate) + " " + strTemp
-            //                Text("\(strTemp)")
-            //                Text("\(strApnd)")
-            //            Text(theDate.description(with: Locale(identifier: "ja_JP")))
-            //                .font(.footnote)
+            HStack {
+                Text(dateFormat1.string(from: theDate) + " " + strTemp)
+                Button(action: {
+                    //                theText = theText + "\n" + dateFormat1.string(from: theDate) + " " + strTemp
+                    let app:String = dateFormat1.string(from: theDate) + " " + strTemp
+                    let arr:[String] = theText.components(separatedBy: "\n")
+                    
+                    if arr[0] != app {
+                        theText = app + "\n" + theText
+//                        theText = dateFormat1.string(from: theDate) + " " + strTemp + "\n" + theText
+                    }
+                    
+                }) {
+                    Text("←を上の枠に追記")
+                }
+            }
+            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
         }
         
     }
