@@ -11,6 +11,11 @@
 		2D891B3725E3C885001EC9BD /* rev01.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D891B3625E3C885001EC9BD /* rev01.swift */; };
 		2D891B3A25E3C8FB001EC9BD /* RecordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D891B3925E3C8FB001EC9BD /* RecordList.swift */; };
 		2D891B3D25E3D720001EC9BD /* InputSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D891B3C25E3D720001EC9BD /* InputSheet.swift */; };
+		2D891B4025E3E70D001EC9BD /* ConfigList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D891B3F25E3E70D001EC9BD /* ConfigList.swift */; };
+		2D891B4425E3EFDE001EC9BD /* Vitalrecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D891B4325E3EFDE001EC9BD /* Vitalrecord.swift */; };
+		2D891B4825E3F2DF001EC9BD /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D891B4725E3F2DF001EC9BD /* ModelData.swift */; };
+		2D891B5225E3F488001EC9BD /* vitalrecordData.json in Resources */ = {isa = PBXBuildFile; fileRef = 2D891B5125E3F488001EC9BD /* vitalrecordData.json */; };
+		2D891B5725E3FF7A001EC9BD /* RecordRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D891B5625E3FF7A001EC9BD /* RecordRow.swift */; };
 		2DFF38EF25DB9EDD00D528A7 /* hakarunApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF38EE25DB9EDD00D528A7 /* hakarunApp.swift */; };
 		2DFF38F125DB9EDD00D528A7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFF38F025DB9EDD00D528A7 /* ContentView.swift */; };
 		2DFF38F325DB9EDE00D528A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DFF38F225DB9EDE00D528A7 /* Assets.xcassets */; };
@@ -22,6 +27,11 @@
 		2D891B3625E3C885001EC9BD /* rev01.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rev01.swift; sourceTree = "<group>"; };
 		2D891B3925E3C8FB001EC9BD /* RecordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordList.swift; sourceTree = "<group>"; };
 		2D891B3C25E3D720001EC9BD /* InputSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputSheet.swift; sourceTree = "<group>"; };
+		2D891B3F25E3E70D001EC9BD /* ConfigList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigList.swift; sourceTree = "<group>"; };
+		2D891B4325E3EFDE001EC9BD /* Vitalrecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vitalrecord.swift; sourceTree = "<group>"; };
+		2D891B4725E3F2DF001EC9BD /* ModelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		2D891B5125E3F488001EC9BD /* vitalrecordData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = vitalrecordData.json; sourceTree = "<group>"; };
+		2D891B5625E3FF7A001EC9BD /* RecordRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordRow.swift; sourceTree = "<group>"; };
 		2DFF38EB25DB9EDD00D528A7 /* hakarun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hakarun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DFF38EE25DB9EDD00D528A7 /* hakarunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hakarunApp.swift; sourceTree = "<group>"; };
 		2DFF38F025DB9EDD00D528A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -41,6 +51,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D891B4A25E3F302001EC9BD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2D891B4725E3F2DF001EC9BD /* ModelData.swift */,
+				2D891B4325E3EFDE001EC9BD /* Vitalrecord.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2D891B5025E3F488001EC9BD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2D891B5125E3F488001EC9BD /* vitalrecordData.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		2DFF38E225DB9EDD00D528A7 = {
 			isa = PBXGroup;
 			children = (
@@ -63,7 +90,11 @@
 				2DFF38EE25DB9EDD00D528A7 /* hakarunApp.swift */,
 				2DFF38F025DB9EDD00D528A7 /* ContentView.swift */,
 				2D891B3925E3C8FB001EC9BD /* RecordList.swift */,
+				2D891B5625E3FF7A001EC9BD /* RecordRow.swift */,
 				2D891B3C25E3D720001EC9BD /* InputSheet.swift */,
+				2D891B3F25E3E70D001EC9BD /* ConfigList.swift */,
+				2D891B4A25E3F302001EC9BD /* Model */,
+				2D891B5025E3F488001EC9BD /* Resources */,
 				2D891B3625E3C885001EC9BD /* rev01.swift */,
 				2D891B3325E3C816001EC9BD /* FileHandring.swift */,
 				2DFF38F225DB9EDE00D528A7 /* Assets.xcassets */,
@@ -140,6 +171,7 @@
 			files = (
 				2DFF38F625DB9EDE00D528A7 /* Preview Assets.xcassets in Resources */,
 				2DFF38F325DB9EDE00D528A7 /* Assets.xcassets in Resources */,
+				2D891B5225E3F488001EC9BD /* vitalrecordData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,10 +184,14 @@
 			files = (
 				2D891B3D25E3D720001EC9BD /* InputSheet.swift in Sources */,
 				2D891B3725E3C885001EC9BD /* rev01.swift in Sources */,
+				2D891B4825E3F2DF001EC9BD /* ModelData.swift in Sources */,
 				2D891B3A25E3C8FB001EC9BD /* RecordList.swift in Sources */,
+				2D891B4425E3EFDE001EC9BD /* Vitalrecord.swift in Sources */,
 				2DFF38F125DB9EDD00D528A7 /* ContentView.swift in Sources */,
 				2DFF38EF25DB9EDD00D528A7 /* hakarunApp.swift in Sources */,
+				2D891B5725E3FF7A001EC9BD /* RecordRow.swift in Sources */,
 				2D891B3425E3C816001EC9BD /* FileHandring.swift in Sources */,
+				2D891B4025E3E70D001EC9BD /* ConfigList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

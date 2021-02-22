@@ -47,12 +47,13 @@ struct ContentView: View {
     var body: some View {
         
         TabView(selection: $selectedTag) {
+//            RecordList(vitalrecord: vitalrecords[0])
             RecordList()
                 .tabItem {
                     Image(systemName: "list.dash")
                     Text("記録")
                 }.tag(1)
-            Text("設定")
+            ConfigList()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("設定")

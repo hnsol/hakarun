@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1001,
+        "date": 537071485.60099697,
+        "temperature": "35.1",
+        "isDone": false
+    },
+    {
+        "id": 1002,
+        "date": 537071485.60099697,
+        "temperature": "35.2",
+        "isDone": true
+    },
+    {
+        "id": 1003,
+        "date": 537071485.60099697,
+        "temperature": "35.3",
+        "isDone": false
+    }
+]
