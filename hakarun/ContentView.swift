@@ -32,18 +32,11 @@ struct ContentView: View {
     //    @State var strApnd: String = ""
     var fileNam: String = "hakarun_data.txt"
     @State var theText: String = loadText("hakarun_data.txt") ?? "yyyy-MM-dd xx.x"
-    @State var strTemp: String = "36.1"
-    @State var theDate = Date()
+//    @State var strTemp: String = "36.1"
+//    @State var theDate = Date()
     
     @State var selectedTag: Int = 1
-    
-    // 日付書式
-    var dateFormat1: DateFormatter {
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd"
-        return df
-    }
-    
+        
     var body: some View {
         
         TabView(selection: $selectedTag) {

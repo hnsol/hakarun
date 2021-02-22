@@ -12,10 +12,11 @@ import SwiftUI
 struct InputSheet: View {
     
     @Binding var isSheet: Bool
-    @State private var theDate = Date()
-    
-    @State var temperature:String = ""
-    
+//    @State private var theDate = Date()
+//    @State var temperature:String = ""
+//    @Binding var vitalrecord: Vitalrecord
+    @Binding var date: Date
+    @Binding var temperature: String
     
     var body: some View {
         
@@ -23,10 +24,10 @@ struct InputSheet: View {
         NavigationView {
             Form {
                 
-                DatePicker(selection: $theDate, displayedComponents: .date,
+                DatePicker(selection: $date, displayedComponents: .date,
                            label: { Image(systemName: "calendar.badge.plus")})
                     .environment(\.locale, Locale(identifier: "ja_JP"))
-                    .padding()
+                    .padding(.all)
                 
                 HStack {
                     Image(systemName: "thermometer")
@@ -38,14 +39,15 @@ struct InputSheet: View {
                             //                        setvalues(modelData: modelData)
                             isSheet = false
                         })
-                        .font(.title)
-                        .padding(.leading)
+                        .padding([.top, .leading, .bottom])
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(/*@START_MENU_TOKEN@*/.numbersAndPunctuation/*@END_MENU_TOKEN@*/)
                     
-                }.padding()
+                }
+                .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
             }
-            .navigationTitle("日付と体温の入力")
+            .navigationTitle("日付と体温を入力")
+            .navigationBarTitleDisplayMode(/*@START_MENU_TOKEN@*/.inline/*@END_MENU_TOKEN@*/)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("完了", action: {
@@ -59,6 +61,8 @@ struct InputSheet: View {
 
 struct InputSheet_Previews: PreviewProvider {
     static var previews: some View {
-        InputSheet(isSheet: Binding.constant(true))
+//        InputSheet(isSheet: Binding.constant(true))
+        InputSheet(isSheet: Binding.constant(true), date: Binding.constant(Date()), temperature: Binding.constant(""))
+//        InputSheet(isSheet: Binding.constant(true), vitalrecord: Binding.vitalrecords[0])
     }
 }
