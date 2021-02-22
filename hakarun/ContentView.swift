@@ -8,54 +8,7 @@
 import SwiftUI
 import Foundation
 
-// 保存ファイルへのURLをつくる
-func docURL(_ fileName:String) -> URL? {
-    let fileManager = FileManager.default
-    do {
-        // Documentsフォルダ
-        let docsUrl = try fileManager.url(
-            for: .documentDirectory,
-            in:  .userDomainMask,
-            appropriateFor: nil,
-            create: false)
-        // URLをつくる
-        let url = docsUrl.appendingPathComponent(fileName)
-        return url
-    } catch {
-        return nil
-    }
-}
 
-// テキストデータを保存する
-func saveText(_ textData:String, _ fileName:String) {
-    // URLを得られたらアンラップしてurlに代入
-    guard let url = docURL(fileName) else {
-        return
-    }
-    // ファイルパスへの保存
-    do {
-        let path = url.path
-        try textData.write(toFile: path, atomically: true, encoding: .utf8)
-    } catch let error as NSError {
-        print(error)
-    }
-}
-
-// テキストデータを読み込んで戻す
-func loadText(_ fileName:String) -> String? {
-    // URLを得られたらアンラップしてurlに代入
-    guard let url = docURL(fileName) else {
-        return nil
-    }
-    // urlからの読み込み
-    do {
-        let textData = try String(contentsOf: url, encoding: .utf8)
-        return textData
-    } catch {
-        return nil
-    }
-    
-}
 
 // キーボードを下げる
 extension UIApplication {
@@ -66,6 +19,7 @@ extension UIApplication {
         )
     }
 }
+
 
 
 struct TextforEditor {
@@ -81,6 +35,8 @@ struct ContentView: View {
     @State var strTemp: String = "36.1"
     @State var theDate = Date()
     
+    @State var selectedTag: Int = 1
+    
     // 日付書式
     var dateFormat1: DateFormatter {
         let df = DateFormatter()
@@ -90,85 +46,20 @@ struct ContentView: View {
     
     var body: some View {
         
-        ZStack () {
-            // 背景のタップでキーボードを下げる
-            Color.white
-                .onTapGesture {
-                    UIApplication.shared.endEditing()
-                }
-            
-            VStack {
-                NavigationView {
-                    TextEditor(text: $theText)
-                        .lineSpacing(10)
-                        .border(Color.gray)
-                        .padding([.leading, .bottom, .trailing])
-                        .navigationTitle("はかるん")
-                        .toolbar {
-                            // 保存ボタン
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                Button {
-                                    UIApplication.shared.endEditing()
-                                    saveText(theText, fileNam)
-                                } label: {
-                                    Text("保存")
-                                }
-                            }
-                            // 消去ボタン
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                Button {
-                                    theText = ""
-                                } label: {
-                                    Text("消去")
-                                }
-                            }
-                        }
-                }
-                //            .frame(height: 400.0)
-                
-                HStack {
-                    DatePicker("日付", selection: $theDate, displayedComponents: .date)
-                        .frame(width: 160.0)
-                        .environment(\.locale, Locale(identifier: "ja_JP"))
-                        .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-                    
-                    HStack {
-                        Label("", systemImage: "thermometer")
-                        TextField("体温", text: $strTemp)
-                            .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-                            .frame(width: 80.0)
-                            .border(/*@START_MENU_TOKEN@*/Color.gray/*@END_MENU_TOKEN@*/, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-                            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-                            .keyboardType(/*@START_MENU_TOKEN@*/.decimalPad/*@END_MENU_TOKEN@*/)
-                            .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
-                    }
-                }
-                .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-                
-                HStack {
-                    Text(dateFormat1.string(from: theDate) + " " + strTemp)
-                    Button(action: {
-                        //                theText = theText + "\n" + dateFormat1.string(from: theDate) + " " + strTemp
-                        let app:String = dateFormat1.string(from: theDate) + " " + strTemp
-                        let arr:[String] = theText.components(separatedBy: "\n")
-                        
-                        if arr[0] != app {
-                            theText = app + "\n" + theText
-                            //                        theText = dateFormat1.string(from: theDate) + " " + strTemp + "\n" + theText
-                            UIApplication.shared.endEditing()
-                            saveText(theText, fileNam)
-                        }
-                        
-                    }) {
-                        Text("←を上の枠に追記")
-                    }
-                }
-                .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-            }
-            
+        TabView(selection: $selectedTag) {
+            RecordList()
+                .tabItem {
+                    Image(systemName: "list.dash")
+                    Text("記録")
+                }.tag(1)
+            Text("設定")
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("設定")
+                }.tag(2)
         }
+        
     }
-    
 }
 
 
