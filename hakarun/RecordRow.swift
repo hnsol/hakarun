@@ -11,25 +11,39 @@ struct RecordRow: View {
     @EnvironmentObject var modelData: ModelData
     var vitalrecord: Vitalrecord
 
+    @AppStorage("selectFormat")  var selectFormat = 0
+
     var dateFormat1: DateFormatter {
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd"
         return df
     }
+
+    var dateFormat2: DateFormatter {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd HH:mm"
+        return df
+    }
+
     // 現在のビューがどの配列に入っているか、idxを取る（Bindせず）
     var index: Int {
         modelData.vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
     }
 
-    
     var body: some View {
+
         HStack {
-            Text(dateFormat1.string(from: vitalrecord.date))
-
+            
+            if selectFormat == 0 {
+                Text(dateFormat1.string(from: vitalrecord.date))
+            } else {
+                Text(dateFormat2.string(from: vitalrecord.date))
+            }
+            
             Spacer()
-
+            
             Text("\(vitalrecord.temperature)")
-
+            
             Spacer()
             
             if vitalrecord.isDone {

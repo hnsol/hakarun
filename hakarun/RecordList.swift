@@ -11,6 +11,11 @@ struct RecordList: View {
     @EnvironmentObject var modelData: ModelData
     @State var isSheet = true
     @State private var editMode = EditMode.inactive
+    
+    // TODO: AppStorageを使うコードはのちほど作成
+    @AppStorage("isAutDelete") var isAutoDelete = false
+    @AppStorage("selectKeep")  var selectKeep = 1
+    @AppStorage("isKeepDone")  var isKeepDone = true
 
     var body: some View {
         
@@ -23,6 +28,7 @@ struct RecordList: View {
                     }
                     .onDelete(perform: onDelete)
                     .onMove(perform: onMove)
+
                 }
                 .navigationTitle("履歴")
                 .navigationBarTitleDisplayMode(/*@START_MENU_TOKEN@*/.inline/*@END_MENU_TOKEN@*/)
@@ -30,7 +36,7 @@ struct RecordList: View {
                 .environment(\.editMode, $editMode)
                 
             }
-            .sheet(isPresented: $isSheet, onDismiss: didDismiss) {
+            .sheet(isPresented: $isSheet) {
                 InputSheet(isSheet: $isSheet)
             }
             
@@ -38,16 +44,9 @@ struct RecordList: View {
         }
     }
     
-//    private var addButton: some View {
-//        switch editMode {
-//        case .inactive:
-//            return AnyView(Button(action: onAdd) { Image(systemName: "plus") })
-//        default:
-//            return AnyView(EmptyView())
-//        }
-//    }
-
     private var addButton: some View {
+        // editModeに入ったときに、データ追加ビューに飛ぶとおかしくなるので
+        // switchで消すことが必要！
         switch editMode {
         case .inactive:
             return AnyView(Button(action: {
@@ -62,15 +61,15 @@ struct RecordList: View {
         modelData.vitalrecords.remove(atOffsets: offsets)
     }
     
-    // NOTE: 移動が必要か？要検討
+    // NOTE: 移動機能が必要か？要検討
     func onMove(source: IndexSet, destination: Int) {
         modelData.vitalrecords.move(fromOffsets: source, toOffset: destination)
     }
     
-    func didDismiss() {
-//  ここではなくてonCommitで処理を書くようにした
+//    ここではなくてonCommitで処理を書くようにした
+//    func didDismiss() {
+//    }
 
-    }
 }
 
 

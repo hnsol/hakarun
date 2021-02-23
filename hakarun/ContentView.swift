@@ -28,19 +28,12 @@ struct TextforEditor {
 
 
 struct ContentView: View {
-    //    @State var theText: String = ""
-    //    @State var strApnd: String = ""
-    var fileNam: String = "hakarun_data.txt"
-    @State var theText: String = loadText("hakarun_data.txt") ?? "yyyy-MM-dd xx.x"
-//    @State var strTemp: String = "36.1"
-//    @State var theDate = Date()
     
     @State var selectedTag: Int = 1
         
     var body: some View {
         
         TabView(selection: $selectedTag) {
-//            RecordList(vitalrecord: vitalrecords[0])
             RecordList()
                 .tabItem {
                     Image(systemName: "list.dash")
@@ -55,7 +48,6 @@ struct ContentView: View {
         
     }
 }
-
 
 
 
