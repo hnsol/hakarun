@@ -34,10 +34,7 @@ struct InputSheet: View {
                         text: $temperature,
                         onCommit: {
                             if temperature != "" {
-//                                print("01: " + temperature)
                                 modelData.vitalrecords.insert(Vitalrecord(id:UUID().hashValue, date: date, temperature: temperature, isDone: false), at:0)
-//                                print(modelData.vitalrecords)
-//                                print("02: " + temperature)
                             }
                             isSheet = false
                         })
@@ -64,7 +61,5 @@ struct InputSheet: View {
 struct InputSheet_Previews: PreviewProvider {
     static var previews: some View {
         InputSheet(isSheet: Binding.constant(true))
-//        InputSheet(isSheet: Binding.constant(true), date: Binding.constant(Date()), temperature: Binding.constant(""))
-//        InputSheet(isSheet: Binding.constant(true), vitalrecord: Binding.vitalrecords[0])
     }
 }
