@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// 最初にインプットするシートを表示する
+// インプットするシート
 
 struct InputSheet: View {
     @EnvironmentObject var modelData: ModelData
@@ -34,12 +34,10 @@ struct InputSheet: View {
                         text: $temperature,
                         onCommit: {
                             if temperature != "" {
-                                print("01: " + temperature)
-                                modelData.vitalrecords.append(Vitalrecord(id:999, date: date, temperature: temperature, isDone: false))
-                                print(modelData.vitalrecords)
-                                date = Date()
-                                temperature = ""
-                                print("02: " + temperature)
+//                                print("01: " + temperature)
+                                modelData.vitalrecords.insert(Vitalrecord(id:UUID().hashValue, date: date, temperature: temperature, isDone: false), at:0)
+//                                print(modelData.vitalrecords)
+//                                print("02: " + temperature)
                             }
                             isSheet = false
                         })

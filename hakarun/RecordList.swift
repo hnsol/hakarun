@@ -9,8 +9,9 @@ import SwiftUI
 
 struct RecordList: View {
     @EnvironmentObject var modelData: ModelData
-    @State var isSheet = false
-    
+    @State var isSheet = true
+    @State private var editMode = EditMode.inactive
+
     var body: some View {
         
         ZStack (alignment: .bottomTrailing){
@@ -26,6 +27,7 @@ struct RecordList: View {
                 .navigationTitle("履歴")
                 .navigationBarTitleDisplayMode(/*@START_MENU_TOKEN@*/.inline/*@END_MENU_TOKEN@*/)
                 .navigationBarItems(trailing: EditButton())
+                .environment(\.editMode, $editMode)
                 
             }
             .sheet(isPresented: $isSheet, onDismiss: didDismiss) {
@@ -36,10 +38,24 @@ struct RecordList: View {
         }
     }
     
+//    private var addButton: some View {
+//        switch editMode {
+//        case .inactive:
+//            return AnyView(Button(action: onAdd) { Image(systemName: "plus") })
+//        default:
+//            return AnyView(EmptyView())
+//        }
+//    }
+
     private var addButton: some View {
-        AnyView(Button(action: {
-            isSheet = true
-        }) { Image(systemName: "pencil.tip.crop.circle.badge.plus").font(.largeTitle) })
+        switch editMode {
+        case .inactive:
+            return AnyView(Button(action: {
+                isSheet = true
+            }) { Image(systemName: "pencil.tip.crop.circle.badge.plus").font(.largeTitle) })
+        default:
+            return AnyView(EmptyView())
+        }
     }
     
     func onDelete(offsets: IndexSet) {
@@ -52,14 +68,7 @@ struct RecordList: View {
     }
     
     func didDismiss() {
-//  ここではなくてonCommitで処理を書くとおもっている
-//        if (newrecord.temperature != "") {
-//            records.append(newrecord)
-//            print(records)
-//            newrecord.temperature = ""
-//            vitalrecords.append(newrecord)
-//            print(vitalrecords)
-//        }
+//  ここではなくてonCommitで処理を書くようにした
 
     }
 }

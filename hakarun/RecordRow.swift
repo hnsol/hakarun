@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RecordRow: View {
+//    @EnvironmentObject var modelData: ModelData
     var vitalrecord: Vitalrecord
 
     var dateFormat1: DateFormatter {
@@ -15,7 +16,12 @@ struct RecordRow: View {
         df.dateFormat = "yyyy-MM-dd"
         return df
     }
+//    // 現在のビューがどの配列に入っているか、idxを取る（Bindせず）
+//    var ingIdx: Int {
+//        modelData.ingredients.firstIndex(where: { $0.id == ingredient.id })!
+//    }
 
+    
     var body: some View {
         HStack {
             Text(dateFormat1.string(from: vitalrecord.date))
