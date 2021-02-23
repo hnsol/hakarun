@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct RecordList: View {
-    
+    @EnvironmentObject var modelData: ModelData
     @State var isSheet = false
-    @State var records = [ Vitalrecord(id: 1001, date: Date(), temperature: "36.1", isDone: false),
-                           Vitalrecord(id: 1002, date: Date(), temperature: "36.2", isDone: false) ]
-    @State private var newrecord = Vitalrecord(id: 1003, date: Date(), temperature: "", isDone: false)
-    
     
     var body: some View {
         
@@ -21,10 +17,10 @@ struct RecordList: View {
             NavigationView{
                 
                 List {
-//                    ForEach(vitalrecords) {vitalrecord in
-//                        RecordRow(vitalrecord: vitalrecord)
-                    ForEach(records) {record in
-                        RecordRow(vitalrecord: record)
+                    ForEach(modelData.vitalrecords) {vitalrecord in
+                        RecordRow(vitalrecord: vitalrecord)
+//                    ForEach(records) {record in
+//                        RecordRow(vitalrecord: record)
                     }
                     .onDelete(perform: onDelete)
                     //                .onMove(perform: onMove)
@@ -36,7 +32,9 @@ struct RecordList: View {
                 
             }
             .sheet(isPresented: $isSheet, onDismiss: didDismiss) {
-                InputSheet(isSheet: $isSheet, date: $newrecord.date, temperature: $newrecord.temperature)
+//                InputSheet(isSheet: $isSheet, date: $newrecord.date, temperature: $newrecord.temperature)
+//                InputSheet(isSheet: $isSheet, vitalrecord: newrecord)
+                InputSheet(isSheet: $isSheet)
             }
             
             addButton.padding()
@@ -47,25 +45,25 @@ struct RecordList: View {
         AnyView(Button(action: {
             isSheet = true
         }) { Image(systemName: "pencil.tip.crop.circle.badge.plus").font(.largeTitle) })
-//    }) { Image(systemName: "plus.square.fill").font(.largeTitle) })
     }
     
     func onDelete(offsets: IndexSet) {
-        //    fruits.remove(atOffsets: offsets)
+        modelData.vitalrecords.remove(atOffsets: offsets)
     }
     
-    //func onMove(source: IndexSet, destination: Int) {
-    //    fruits.move(fromOffsets: source, toOffset: destination)
-    //}
+    func onMove(source: IndexSet, destination: Int) {
+        modelData.vitalrecords.move(fromOffsets: source, toOffset: destination)
+    }
     
     func didDismiss() {
-        if (newrecord.temperature != "") {
-            records.append(newrecord)
-            print(records)
-            newrecord.temperature = ""
+//  ここではなくてonCommitで処理を書くとおもっている
+//        if (newrecord.temperature != "") {
+//            records.append(newrecord)
+//            print(records)
+//            newrecord.temperature = ""
 //            vitalrecords.append(newrecord)
 //            print(vitalrecords)
-        }
+//        }
 
     }
 }
@@ -74,5 +72,7 @@ struct RecordList: View {
 struct RecordList_Previews: PreviewProvider {
     static var previews: some View {
         RecordList()
+            .environmentObject(ModelData())
+
     }
 }

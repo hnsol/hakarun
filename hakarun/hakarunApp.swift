@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct hakarunApp: App {
+    @StateObject private var modelData = ModelData()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(ModelData())
+            
         }
     }
 }

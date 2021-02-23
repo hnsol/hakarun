@@ -6,13 +6,13 @@
 //
 
 import Foundation
-//import Combine
+import Combine
 
-//final class ModelData: ObservableObject {
-//    @Published var ingredients: [Ingredient] = load("ingredientData.json")
-//}
+final class ModelData: ObservableObject {
+    @Published var vitalrecords: [Vitalrecord] = load("vitalrecordData.json")
+}
 
-var vitalrecords: [Vitalrecord] = load("vitalrecordData.json")
+//var vitalrecords: [Vitalrecord] = load("vitalrecordData.json")
 
 
 func load<T: Decodable>(_ filename: String) -> T {

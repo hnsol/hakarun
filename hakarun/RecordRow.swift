@@ -38,7 +38,11 @@ struct RecordRow: View {
 }
 
 struct RecordRow_Previews: PreviewProvider {
+    static let modelData = ModelData()
+
     static var previews: some View {
-        RecordRow(vitalrecord: vitalrecords[0])
+        RecordRow(vitalrecord: modelData.vitalrecords[0])
+            .environmentObject(ModelData())
+
     }
 }

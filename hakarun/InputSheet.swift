@@ -10,13 +10,14 @@ import SwiftUI
 // 最初にインプットするシートを表示する
 
 struct InputSheet: View {
-    
+    @EnvironmentObject var modelData: ModelData
     @Binding var isSheet: Bool
-//    @State private var theDate = Date()
-//    @State var temperature:String = ""
+
+    @State private var date = Date()
+    @State private var temperature:String = ""
 //    @Binding var vitalrecord: Vitalrecord
-    @Binding var date: Date
-    @Binding var temperature: String
+//    @Binding var date: Date
+//    @Binding var temperature: String
     
     var body: some View {
         
@@ -36,7 +37,9 @@ struct InputSheet: View {
                         "体温を入力...",
                         text: $temperature,
                         onCommit: {
-                            //                        setvalues(modelData: modelData)
+                            if temperature != "" {
+                                modelData.vitalrecords.append(Vitalrecord(id:999, date: date, temperature: temperature, isDone: false))
+                            }
                             isSheet = false
                         })
                         .padding([.top, .leading, .bottom])
@@ -61,8 +64,8 @@ struct InputSheet: View {
 
 struct InputSheet_Previews: PreviewProvider {
     static var previews: some View {
-//        InputSheet(isSheet: Binding.constant(true))
-        InputSheet(isSheet: Binding.constant(true), date: Binding.constant(Date()), temperature: Binding.constant(""))
+        InputSheet(isSheet: Binding.constant(true))
+//        InputSheet(isSheet: Binding.constant(true), date: Binding.constant(Date()), temperature: Binding.constant(""))
 //        InputSheet(isSheet: Binding.constant(true), vitalrecord: Binding.vitalrecords[0])
     }
 }

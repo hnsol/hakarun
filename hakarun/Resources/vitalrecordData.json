@@ -10,11 +10,5 @@
         "date": 537071485.60099697,
         "temperature": "35.2",
         "isDone": true
-    },
-    {
-        "id": 1003,
-        "date": 537071485.60099697,
-        "temperature": "35.3",
-        "isDone": false
     }
 ]
