@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecordRow: View {
-//    @EnvironmentObject var modelData: ModelData
+    @EnvironmentObject var modelData: ModelData
     var vitalrecord: Vitalrecord
 
     var dateFormat1: DateFormatter {
@@ -16,10 +16,10 @@ struct RecordRow: View {
         df.dateFormat = "yyyy-MM-dd"
         return df
     }
-//    // 現在のビューがどの配列に入っているか、idxを取る（Bindせず）
-//    var ingIdx: Int {
-//        modelData.ingredients.firstIndex(where: { $0.id == ingredient.id })!
-//    }
+    // 現在のビューがどの配列に入っているか、idxを取る（Bindせず）
+    var index: Int {
+        modelData.vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
+    }
 
     
     var body: some View {
@@ -35,9 +35,15 @@ struct RecordRow: View {
             if vitalrecord.isDone {
                 Image(systemName: "checkmark.seal.fill")
                     .foregroundColor(.green)
+                    .onTapGesture {
+                        modelData.vitalrecords[index].isDone.toggle()
+                    }
             } else {
                 Image(systemName: "checkmark.seal")
                     .foregroundColor(.gray)
+                    .onTapGesture {
+                        modelData.vitalrecords[index].isDone.toggle()
+                    }
             }
         }.padding(.horizontal)
     }
