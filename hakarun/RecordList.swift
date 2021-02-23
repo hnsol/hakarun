@@ -46,7 +46,8 @@ struct RecordList: View {
     private var addButton: some View {
         AnyView(Button(action: {
             isSheet = true
-        }) { Image(systemName: "plus.square.fill").font(.largeTitle) })
+        }) { Image(systemName: "pencil.tip.crop.circle.badge.plus").font(.largeTitle) })
+//    }) { Image(systemName: "plus.square.fill").font(.largeTitle) })
     }
     
     func onDelete(offsets: IndexSet) {
