@@ -19,21 +19,16 @@ struct RecordList: View {
                 List {
                     ForEach(modelData.vitalrecords) {vitalrecord in
                         RecordRow(vitalrecord: vitalrecord)
-//                    ForEach(records) {record in
-//                        RecordRow(vitalrecord: record)
                     }
                     .onDelete(perform: onDelete)
-                    //                .onMove(perform: onMove)
+                    .onMove(perform: onMove)
                 }
                 .navigationTitle("履歴")
                 .navigationBarTitleDisplayMode(/*@START_MENU_TOKEN@*/.inline/*@END_MENU_TOKEN@*/)
-//                .navigationBarItems(leading: EditButton(), trailing: addButton)
                 .navigationBarItems(trailing: EditButton())
                 
             }
             .sheet(isPresented: $isSheet, onDismiss: didDismiss) {
-//                InputSheet(isSheet: $isSheet, date: $newrecord.date, temperature: $newrecord.temperature)
-//                InputSheet(isSheet: $isSheet, vitalrecord: newrecord)
                 InputSheet(isSheet: $isSheet)
             }
             
@@ -51,6 +46,7 @@ struct RecordList: View {
         modelData.vitalrecords.remove(atOffsets: offsets)
     }
     
+    // NOTE: 移動が必要か？要検討
     func onMove(source: IndexSet, destination: Int) {
         modelData.vitalrecords.move(fromOffsets: source, toOffset: destination)
     }

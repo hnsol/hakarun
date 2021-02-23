@@ -15,12 +15,8 @@ struct InputSheet: View {
 
     @State private var date = Date()
     @State private var temperature:String = ""
-//    @Binding var vitalrecord: Vitalrecord
-//    @Binding var date: Date
-//    @Binding var temperature: String
     
     var body: some View {
-        
         
         NavigationView {
             Form {
@@ -38,7 +34,12 @@ struct InputSheet: View {
                         text: $temperature,
                         onCommit: {
                             if temperature != "" {
+                                print("01: " + temperature)
                                 modelData.vitalrecords.append(Vitalrecord(id:999, date: date, temperature: temperature, isDone: false))
+                                print(modelData.vitalrecords)
+                                date = Date()
+                                temperature = ""
+                                print("02: " + temperature)
                             }
                             isSheet = false
                         })
