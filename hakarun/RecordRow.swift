@@ -39,7 +39,6 @@ struct RecordRow: View {
             if selectFormat == 0 {
                 Text(dateFormat1.string(from: vitalrecord.timestamp!))
             } else {
-//                Text("\(vitalrecord.timestamp)")
                 Text(dateFormat2.string(from: vitalrecord.timestamp!))
             }
             
@@ -53,15 +52,19 @@ struct RecordRow: View {
                 Image(systemName: "checkmark.seal.fill")
                     .foregroundColor(.green)
                     .onTapGesture {
-//                        modelData.vitalrecords[index].isDone.toggle()
-//                        vitalrecords[index].isDone.toggle()
+                        vitalrecord.isDone.toggle()
+                        // ここでCoreDateへの保存を書くべきなのかもしれないが、
+                        // hakarunAppのonChangeで保存しているので、書くのをやめておく
+                        // いつか保存されない現象が起きそうな気もする
                     }
             } else {
                 Image(systemName: "checkmark.seal")
                     .foregroundColor(.gray)
                     .onTapGesture {
-//                        modelData.vitalrecords[index].isDone.toggle()
-//                        vitalrecords[index].isDone.toggle()
+                        vitalrecord.isDone.toggle()
+                        // ここでCoreDateへの保存を書くべきなのかもしれないが、
+                        // hakarunAppのonChangeで保存しているので、書くのをやめておく
+                        // いつか保存されない現象が起きそうな気もする
                     }
             }
         }.padding(.horizontal)
@@ -69,12 +72,17 @@ struct RecordRow: View {
 }
 
 //struct RecordRow_Previews: PreviewProvider {
-//
+//    @Environment(\.managedObjectContext) private var viewContext
+//    @FetchRequest(
+//        sortDescriptors: [NSSortDescriptor(keyPath: \VitalRecord.timestamp, ascending: false)],
+//        animation: .default)
+//    private var vitalrecords: FetchedResults<VitalRecord>
+//    
 //    static var previews: some View {
-//        RecordRow(vitalrecord: ???)
+//        RecordRow(vitalrecord: PersistenceController.preview.container.)
 //            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-////        RecordRow(vitalrecord: modelData.vitalrecords[0])
-////            .environmentObject(ModelData())
-//
+//        //        RecordRow(vitalrecord: modelData.vitalrecords[0])
+//        //            .environmentObject(ModelData())
+//        
 //    }
 //}
