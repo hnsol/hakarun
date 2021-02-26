@@ -40,10 +40,10 @@ struct ConfigList: View {
                                 Text(keepOption[index])
                             }
                         })
-                        Toggle("未入力データは残す#未実装", isOn: $isKeepDone)
+                        Toggle("未入力データは残す", isOn: $isKeepDone)
                     }
                 }
-            }.navigationTitle("設定").navigationBarTitleDisplayMode(/*@START_MENU_TOKEN@*/.inline/*@END_MENU_TOKEN@*/)
+            }.navigationTitle("設定").navigationBarTitleDisplayMode(.inline)
         }
     }
 }
