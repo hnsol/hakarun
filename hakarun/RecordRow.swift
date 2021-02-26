@@ -10,6 +10,7 @@ import SwiftUI
 struct RecordRow: View {
 //    @EnvironmentObject var modelData: ModelData
     @Environment(\.managedObjectContext) private var viewContext
+//    @EnvironmentObject(\.managedObjectContext) var viewContext
     var vitalrecord: VitalRecord
 
     @AppStorage("selectFormat")  var selectFormat = 0
@@ -28,7 +29,7 @@ struct RecordRow: View {
 
     // 現在のビューがどの配列に入っているか、idxを取る（Bindせず）
 //    var index: Int {
-//        modelData.vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
+//        viewContext.vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
 //        vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
 //    }
 
@@ -48,29 +49,30 @@ struct RecordRow: View {
             
             Spacer()
             
-//            if vitalrecord.isDone {
-//                Image(systemName: "checkmark.seal.fill")
-//                    .foregroundColor(.green)
-//                    .onTapGesture {
-////                        modelData.vitalrecords[index].isDone.toggle()
-////                        vitalrecords[index].isDone.toggle()
-//                    }
-//            } else {
-//                Image(systemName: "checkmark.seal")
-//                    .foregroundColor(.gray)
-//                    .onTapGesture {
-////                        modelData.vitalrecords[index].isDone.toggle()
-////                        vitalrecords[index].isDone.toggle()
-//                    }
-//            }
+            if vitalrecord.isDone {
+                Image(systemName: "checkmark.seal.fill")
+                    .foregroundColor(.green)
+                    .onTapGesture {
+//                        modelData.vitalrecords[index].isDone.toggle()
+//                        vitalrecords[index].isDone.toggle()
+                    }
+            } else {
+                Image(systemName: "checkmark.seal")
+                    .foregroundColor(.gray)
+                    .onTapGesture {
+//                        modelData.vitalrecords[index].isDone.toggle()
+//                        vitalrecords[index].isDone.toggle()
+                    }
+            }
         }.padding(.horizontal)
     }
 }
 
 //struct RecordRow_Previews: PreviewProvider {
-////    static let modelData = ModelData()
 //
 //    static var previews: some View {
+//        RecordRow(vitalrecord: ???)
+//            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 ////        RecordRow(vitalrecord: modelData.vitalrecords[0])
 ////            .environmentObject(ModelData())
 //

@@ -32,6 +32,7 @@ struct PersistenceController {
             let newItem = VitalRecord(context: viewContext)
             newItem.timestamp = Date()
             newItem.temperature = "32.1"
+            newItem.isDone = false
         }
         do {
             try viewContext.save()
