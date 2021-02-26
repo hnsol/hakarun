@@ -33,20 +33,7 @@ struct InputSheet: View {
                     TextField(
                         "体温を入力...",
                         text: $temperature,
-                        onCommit: {
-                            if temperature != "" {
-                                // CoreDataに保存
-                                let newRecord = VitalRecord(context: self.viewContext)
-                                newRecord.timestamp   = date
-                                newRecord.temperature = temperature
-                                do {
-                                    try self.viewContext.save()
-                                } catch {
-                                    print("whoops \(error.localizedDescription)")
-                                }
-                            }
-                            isSheet = false
-                        })
+                        onCommit: quitandsave)
                         .padding([.top, .leading, .bottom])
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .keyboardType(/*@START_MENU_TOKEN@*/.numbersAndPunctuation/*@END_MENU_TOKEN@*/)
@@ -58,14 +45,29 @@ struct InputSheet: View {
             .navigationBarTitleDisplayMode(/*@START_MENU_TOKEN@*/.inline/*@END_MENU_TOKEN@*/)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("完了", action: {
-                        isSheet = false
-                    })
+                    Button("完了", action: quitandsave)
                 }
             }
+            
         }
     }
+    
+    func quitandsave() {
+        if temperature != "" {
+            // CoreDataに保存
+            let newRecord = VitalRecord(context: self.viewContext)
+            newRecord.timestamp   = date
+            newRecord.temperature = temperature
+            do {
+                try self.viewContext.save()
+            } catch {
+                print("whoops \(error.localizedDescription)")
+            }
+        }
+        isSheet = false
+    }
 }
+
 
 struct InputSheet_Previews: PreviewProvider {
     static var previews: some View {

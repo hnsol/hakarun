@@ -85,7 +85,13 @@ struct RecordList: View {
         // とりあえずハードコーディング
         for index in 5..<vitalrecords.count {
             let delRecord = vitalrecords[index]
-            viewContext.delete(delRecord)
+            if isKeepDone {
+                // 未入力データは残す場合
+                if delRecord.isDone { viewContext.delete(delRecord) }
+            } else {
+                // 未入力データも消す場合
+                viewContext.delete(delRecord)
+            }
         }
         do {
             try viewContext.save()
