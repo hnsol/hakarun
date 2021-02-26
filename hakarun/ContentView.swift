@@ -7,24 +7,7 @@
 
 import SwiftUI
 import Foundation
-
-
-
-// キーボードを下げる
-extension UIApplication {
-    func endEditing() {
-        sendAction(
-            #selector(UIResponder.resignFirstResponder),
-            to: nil, from: nil, for: nil
-        )
-    }
-}
-
-
-
-struct TextforEditor {
-    
-}
+import CoreData
 
 
 struct ContentView: View {

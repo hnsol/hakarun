@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct RecordList: View {
 
 //    @EnvironmentObject var modelData: ModelData
-//    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \VitalRecord.timestamp, ascending: true)],
         animation: .default)
@@ -30,13 +31,16 @@ struct RecordList: View {
             NavigationView{
                 
                 List {
-//                    ForEach(modelData.vitalrecords) {vitalrecord in
+                    //                    ForEach(modelData.vitalrecords) {vitalrecord in
                     ForEach(vitalrecords, id: \.self) {vitalrecord in
-                        RecordRow(vitalrecord: vitalrecord)
+                        //                        RecordRow(vitalrecord: vitalrecord)
+                        Text("\(vitalrecord.temperature!)")
+                        //                    Text("\(vitalrecords[0].temperature!)")
+                        //                    Text("\(vitalrecords[1].temperature!)")
                     }
-                    .onDelete(perform: onDelete)
-                    .onMove(perform: onMove)
-
+                    //                    .onDelete(perform: onDelete)
+                    //                    .onMove(perform: onMove)
+                    
                 }
                 .navigationTitle("履歴")
                 .navigationBarTitleDisplayMode(/*@START_MENU_TOKEN@*/.inline/*@END_MENU_TOKEN@*/)
@@ -51,6 +55,7 @@ struct RecordList: View {
             addButton.padding()
         }
     }
+    
     
     private var addButton: some View {
         // editModeに入ったときに、データ追加ビューに飛ぶとおかしくなるので
@@ -82,10 +87,9 @@ struct RecordList: View {
 
 
 struct RecordList_Previews: PreviewProvider {
-    let persistenceController = PersistenceController.shared
 
     static var previews: some View {
-        RecordList()
+        RecordList().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 //            .environment(\.managedObjectContext, persistenceController.container.viewContext)
 //            .environmentObject(ModelData())
 

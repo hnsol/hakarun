@@ -27,52 +27,52 @@ struct RecordRow: View {
     }
 
     // 現在のビューがどの配列に入っているか、idxを取る（Bindせず）
-    var index: Int {
+//    var index: Int {
 //        modelData.vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
-        vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
-    }
+//        vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
+//    }
 
     var body: some View {
 
         HStack {
             
             if selectFormat == 0 {
-                Text(dateFormat1.string(from: vitalrecord.date))
+                Text(dateFormat1.string(from: vitalrecord.timestamp!))
             } else {
-                Text(dateFormat2.string(from: vitalrecord.date))
+                Text(dateFormat2.string(from: vitalrecord.timestamp!))
             }
             
             Spacer()
             
-            Text("\(vitalrecord.temperature)")
+            Text("\(vitalrecord.temperature!)")
             
             Spacer()
             
-            if vitalrecord.isDone {
-                Image(systemName: "checkmark.seal.fill")
-                    .foregroundColor(.green)
-                    .onTapGesture {
-//                        modelData.vitalrecords[index].isDone.toggle()
-                        vitalrecords[index].isDone.toggle()
-                    }
-            } else {
-                Image(systemName: "checkmark.seal")
-                    .foregroundColor(.gray)
-                    .onTapGesture {
-//                        modelData.vitalrecords[index].isDone.toggle()
-                        vitalrecords[index].isDone.toggle()
-                    }
-            }
+//            if vitalrecord.isDone {
+//                Image(systemName: "checkmark.seal.fill")
+//                    .foregroundColor(.green)
+//                    .onTapGesture {
+////                        modelData.vitalrecords[index].isDone.toggle()
+////                        vitalrecords[index].isDone.toggle()
+//                    }
+//            } else {
+//                Image(systemName: "checkmark.seal")
+//                    .foregroundColor(.gray)
+//                    .onTapGesture {
+////                        modelData.vitalrecords[index].isDone.toggle()
+////                        vitalrecords[index].isDone.toggle()
+//                    }
+//            }
         }.padding(.horizontal)
     }
 }
 
-struct RecordRow_Previews: PreviewProvider {
-    static let modelData = ModelData()
-
-    static var previews: some View {
-        RecordRow(vitalrecord: modelData.vitalrecords[0])
-            .environmentObject(ModelData())
-
-    }
-}
+//struct RecordRow_Previews: PreviewProvider {
+////    static let modelData = ModelData()
+//
+//    static var previews: some View {
+////        RecordRow(vitalrecord: modelData.vitalrecords[0])
+////            .environmentObject(ModelData())
+//
+//    }
+//}
