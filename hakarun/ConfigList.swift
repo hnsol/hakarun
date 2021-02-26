@@ -14,9 +14,9 @@ struct ConfigList: View {
     @AppStorage("selectKeep")    var selectKeep = 0
     @AppStorage("isKeepDone")    var isKeepDone = true
 
-//    var vitalrecords: Vitalrecord = [ date: date(), temperature:  ]
-    let formatOption = [ "年月日", "年月日＋時刻" ]
-    let keepOption = [ "直近40件", "直近20件", "デバッグ用：5件" ]
+    let formatOption = [ "年月日", "年月日および時刻" ]
+    let keepOption = [ "直近の60件", "直近の40件", "直近の20件", "5件（デバッグ用）" ]
+//    let keepOption = [ "直近の60件", "直近の40件", "直近の20件" ]
 
     var body: some View {
         

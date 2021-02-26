@@ -19,10 +19,15 @@ struct RecordList: View {
     @State var isSheet = false
     @State private var editMode = EditMode.inactive
     
-    // TODO: AppStorageを使うコードはのちほど作成
     @AppStorage("isAutDelete") var isAutoDelete = false
     @AppStorage("selectKeep")  var selectKeep = 1
     @AppStorage("isKeepDone")  var isKeepDone = true
+    // TODO: ハードコーディングしているのは直したい
+//    private let keepItems = [ 60, 40, 20 ]
+    private var keepItems: Int {
+        let keepOption = [ 60, 40, 20, 5 ]
+        return keepOption[selectKeep]
+    }
 
     var body: some View {
         
@@ -82,25 +87,31 @@ struct RecordList: View {
     }
     
     func autoDelete() {
-        // とりあえずハードコーディング
-        for index in 5..<vitalrecords.count {
-            let delRecord = vitalrecords[index]
-            if isKeepDone {
-                // 未入力データは残す場合
-                if delRecord.isDone { viewContext.delete(delRecord) }
-            } else {
-                // 未入力データも消す場合
-                viewContext.delete(delRecord)
+        //        とりあえずハードコーディング
+        //        for index in 5..<vitalrecords.count {
+        print("keepItems: \(keepItems), selectKeep: \(selectKeep)")
+        // レコード数が指定数より多いときのみ削除処理に入る
+        if keepItems < vitalrecords.count {
+            for index in keepItems..<vitalrecords.count {
+                let delRecord = vitalrecords[index]
+                if isKeepDone {
+                    // 未入力データは残す場合
+                    if delRecord.isDone { viewContext.delete(delRecord) }
+                } else {
+                    // 未入力データも消す場合
+                    viewContext.delete(delRecord)
+                }
             }
-        }
-        do {
-            try viewContext.save()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        } else {
+            return
         }
     }
-    
 }
 
 
