@@ -31,15 +31,15 @@ struct RecordList: View {
             NavigationView{
                 
                 List {
-                    //                    ForEach(modelData.vitalrecords) {vitalrecord in
                     ForEach(vitalrecords, id: \.self) {vitalrecord in
-                        //                        RecordRow(vitalrecord: vitalrecord)
-                        Text("\(vitalrecord.temperature!)")
-                        //                    Text("\(vitalrecords[0].temperature!)")
-                        //                    Text("\(vitalrecords[1].temperature!)")
+                        RecordRow(vitalrecord: vitalrecord)
+//                        Text("\(vitalrecord.timestamp!)")
+//                        Text("\(vitalrecord.temperature!)")
+//                        Text("\(vitalrecords[0].temperature!)")
+//                        Text("\(vitalrecords[1].temperature!)")
                     }
-                    //                    .onDelete(perform: onDelete)
-                    //                    .onMove(perform: onMove)
+                    .onDelete(perform: onDelete)
+                    .onMove(perform: onMove)
                     
                 }
                 .navigationTitle("履歴")
