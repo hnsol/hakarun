@@ -9,15 +9,11 @@ import SwiftUI
 
 struct ConfigList: View {
     
-//    @State var isAutoDelete = false
-//    @State var selectKeep = 1
-//    @State var isKeepBeforeInput = true
     @AppStorage("selectFormat")  var selectFormat = 0
-    @AppStorage("isAutDelete") var isAutoDelete = false
-    @AppStorage("selectKeep")  var selectKeep = 0
-    @AppStorage("isKeepDone")  var isKeepDone = true
+    @AppStorage("isAutDelete")   var isAutoDelete = false
+    @AppStorage("selectKeep")    var selectKeep = 0
+    @AppStorage("isKeepDone")    var isKeepDone = true
 
-    
 //    var vitalrecords: Vitalrecord = [ date: date(), temperature:  ]
     let formatOption = [ "年月日", "年月日＋時刻" ]
     let keepOption = [ "直近40件", "直近20件", "直近60日", "直近30日" ]
@@ -28,7 +24,6 @@ struct ConfigList: View {
             Form {
                 
                 Section(header: Text("表示").padding([.top, .leading, .trailing])) {
-                    // TODO: Pickerの書き方が上と違うのはいつか揃える
                     Picker("日時の表示", selection: $selectFormat, content: {
                         ForEach(0..<formatOption.count) {index in
                             Text(formatOption[index])
@@ -40,14 +35,12 @@ struct ConfigList: View {
                     Toggle("自動的に削除する", isOn: $isAutoDelete)
                     
                     if isAutoDelete {
-                        Picker(selection: $selectKeep, label: Text("残す対象")) {
+                        Picker("残す対象", selection: $selectKeep, content: {
                             ForEach(0..<keepOption.count) { index in
                                 Text(keepOption[index])
-                            }.animation(/*@START_MENU_TOKEN@*/.easeIn/*@END_MENU_TOKEN@*/)
-                        }
-                        Toggle(isOn: $isKeepDone) {
-                            Text("未入力データも残しておく")
-                        }
+                            }
+                        })
+                        Toggle("未入力データは残す", isOn: $isKeepDone)
                     }
                 }
             }.navigationTitle("設定").navigationBarTitleDisplayMode(/*@START_MENU_TOKEN@*/.inline/*@END_MENU_TOKEN@*/)
