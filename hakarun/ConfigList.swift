@@ -16,7 +16,7 @@ struct ConfigList: View {
 
 //    var vitalrecords: Vitalrecord = [ date: date(), temperature:  ]
     let formatOption = [ "年月日", "年月日＋時刻" ]
-    let keepOption = [ "直近40件", "直近20件", "直近60日", "直近30日" ]
+    let keepOption = [ "直近40件", "直近20件", "デバッグ用：5件" ]
 
     var body: some View {
         
@@ -40,7 +40,7 @@ struct ConfigList: View {
                                 Text(keepOption[index])
                             }
                         })
-                        Toggle("未入力データは残す", isOn: $isKeepDone)
+                        Toggle("未入力データは残す#未実装", isOn: $isKeepDone)
                     }
                 }
             }.navigationTitle("設定").navigationBarTitleDisplayMode(/*@START_MENU_TOKEN@*/.inline/*@END_MENU_TOKEN@*/)

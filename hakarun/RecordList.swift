@@ -57,6 +57,7 @@ struct RecordList: View {
         switch editMode {
         case .inactive:
             return AnyView(Button(action: {
+                if isAutoDelete { autoDelete() }
                 isSheet = true
                 //            }) { Image(systemName: "square.and.pencil").font(.title) })
 //            }) { Image(systemName: "calendar.badge.plus").font(.largeTitle) })
@@ -77,6 +78,20 @@ struct RecordList: View {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
+        }
+    }
+    
+    func autoDelete() {
+        // とりあえずハードコーディング
+        for index in 5..<vitalrecords.count {
+            let delRecord = vitalrecords[index]
+            viewContext.delete(delRecord)
+        }
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
         }
     }
     
