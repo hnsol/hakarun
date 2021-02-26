@@ -33,13 +33,10 @@ struct RecordList: View {
                 List {
                     ForEach(vitalrecords, id: \.self) {vitalrecord in
                         RecordRow(vitalrecord: vitalrecord)
-//                        Text("\(vitalrecord.timestamp!)")
-//                        Text("\(vitalrecord.temperature!)")
-//                        Text("\(vitalrecords[0].temperature!)")
-//                        Text("\(vitalrecords[1].temperature!)")
                     }
                     .onDelete(perform: onDelete)
-                    .onMove(perform: onMove)
+                    // 移動機能はなくす
+//                    .onMove(perform: onMove)
                     
                 }
                 .navigationTitle("履歴")
@@ -71,17 +68,24 @@ struct RecordList: View {
     }
     
     func onDelete(offsets: IndexSet) {
-//        modelData.vitalrecords.remove(atOffsets: offsets)
+        withAnimation {
+            offsets.map { vitalrecords[$0] }.forEach(viewContext.delete)
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
     }
     
     // NOTE: 移動機能が必要か？要検討
-    func onMove(source: IndexSet, destination: Int) {
+//    func onMove(source: IndexSet, destination: Int) {
 //        modelData.vitalrecords.move(fromOffsets: source, toOffset: destination)
-    }
-    
-//    ここではなくてonCommitで処理を書くようにした
-//    func didDismiss() {
 //    }
+    
 
 }
 

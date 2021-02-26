@@ -10,20 +10,8 @@ import CoreData
 struct PersistenceController {
     static let shared = PersistenceController()
 
-    // A test configuration for SwiftUI previews
-//    static var preview: PersistenceController = {
-//        let controller = PersistenceController(inMemory: true)
-//
-//        // Create 10 example programming languages.
-//        for _ in 0..<10 {
-//            let language = Item(context: controller.container.viewContext)
-//            language.timestapm = Date()
-//            language.temperature = "32.1"
-//        }
-//
-//        return controller
-//    }()
     
+    // これはプレビュー用のテストデータセット
     static var preview: PersistenceController = {
         let result = PersistenceController(inMemory: true)
         let viewContext = result.container.viewContext
