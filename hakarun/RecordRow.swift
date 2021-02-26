@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct RecordRow: View {
-    @EnvironmentObject var modelData: ModelData
-    var vitalrecord: Vitalrecord
+//    @EnvironmentObject var modelData: ModelData
+    @Environment(\.managedObjectContext) private var viewContext
+    var vitalrecord: VitalRecord
 
     @AppStorage("selectFormat")  var selectFormat = 0
 
@@ -27,7 +28,8 @@ struct RecordRow: View {
 
     // 現在のビューがどの配列に入っているか、idxを取る（Bindせず）
     var index: Int {
-        modelData.vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
+//        modelData.vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
+        vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
     }
 
     var body: some View {
@@ -50,13 +52,15 @@ struct RecordRow: View {
                 Image(systemName: "checkmark.seal.fill")
                     .foregroundColor(.green)
                     .onTapGesture {
-                        modelData.vitalrecords[index].isDone.toggle()
+//                        modelData.vitalrecords[index].isDone.toggle()
+                        vitalrecords[index].isDone.toggle()
                     }
             } else {
                 Image(systemName: "checkmark.seal")
                     .foregroundColor(.gray)
                     .onTapGesture {
-                        modelData.vitalrecords[index].isDone.toggle()
+//                        modelData.vitalrecords[index].isDone.toggle()
+                        vitalrecords[index].isDone.toggle()
                     }
             }
         }.padding(.horizontal)

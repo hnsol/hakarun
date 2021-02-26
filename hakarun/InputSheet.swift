@@ -12,7 +12,7 @@ import SwiftUI
 struct InputSheet: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @EnvironmentObject var modelData: ModelData
+//    @EnvironmentObject var modelData: ModelData
     @Binding var isSheet: Bool
 
     @State private var date = Date()
@@ -36,7 +36,7 @@ struct InputSheet: View {
                         text: $temperature,
                         onCommit: {
                             if temperature != "" {
-                                modelData.vitalrecords.insert(Vitalrecord(id:UUID().hashValue, date: date, temperature: temperature, isDone: false), at:0)
+//                                modelData.vitalrecords.insert(Vitalrecord(id:UUID().hashValue, date: date, temperature: temperature, isDone: false), at:0)
                                 // CoreDataに保存
                                 let newRecord = VitalRecord(context: self.viewContext)
                                 newRecord.timestamp   = date

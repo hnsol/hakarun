@@ -39,6 +39,7 @@ struct ContentView: View {
                     Image(systemName: "list.dash")
                     Text("記録")
                 }.tag(1)
+            
             ConfigList()
                 .tabItem {
                     Image(systemName: "gear")
@@ -54,7 +55,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject(ModelData())
+//            .environmentObject(ModelData())
 
     }
 }

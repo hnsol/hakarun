@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct RecordList: View {
-    @EnvironmentObject var modelData: ModelData
+
+//    @EnvironmentObject var modelData: ModelData
+//    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(
+        sortDescriptors: [NSSortDescriptor(keyPath: \VitalRecord.timestamp, ascending: true)],
+        animation: .default)
+    private var vitalrecords: FetchedResults<VitalRecord>
+
     @State var isSheet = true
     @State private var editMode = EditMode.inactive
     
@@ -23,7 +30,8 @@ struct RecordList: View {
             NavigationView{
                 
                 List {
-                    ForEach(modelData.vitalrecords) {vitalrecord in
+//                    ForEach(modelData.vitalrecords) {vitalrecord in
+                    ForEach(vitalrecords, id: \.self) {vitalrecord in
                         RecordRow(vitalrecord: vitalrecord)
                     }
                     .onDelete(perform: onDelete)
@@ -58,12 +66,12 @@ struct RecordList: View {
     }
     
     func onDelete(offsets: IndexSet) {
-        modelData.vitalrecords.remove(atOffsets: offsets)
+//        modelData.vitalrecords.remove(atOffsets: offsets)
     }
     
     // NOTE: 移動機能が必要か？要検討
     func onMove(source: IndexSet, destination: Int) {
-        modelData.vitalrecords.move(fromOffsets: source, toOffset: destination)
+//        modelData.vitalrecords.move(fromOffsets: source, toOffset: destination)
     }
     
 //    ここではなくてonCommitで処理を書くようにした
@@ -74,9 +82,12 @@ struct RecordList: View {
 
 
 struct RecordList_Previews: PreviewProvider {
+    let persistenceController = PersistenceController.shared
+
     static var previews: some View {
         RecordList()
-            .environmentObject(ModelData())
+//            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+//            .environmentObject(ModelData())
 
     }
 }
