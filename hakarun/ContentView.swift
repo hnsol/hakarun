@@ -28,7 +28,7 @@ struct TextforEditor {
 
 
 struct ContentView: View {
-    
+    @Environment(\.managedObjectContext) private var viewContext
     @State var selectedTag: Int = 1
         
     var body: some View {
