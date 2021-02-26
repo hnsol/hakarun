@@ -16,7 +16,7 @@ struct RecordList: View {
         animation: .default)
     private var vitalrecords: FetchedResults<VitalRecord>
 
-    @State var isSheet = true
+    @State var isSheet = false
     @State private var editMode = EditMode.inactive
     
     // TODO: AppStorageを使うコードはのちほど作成
@@ -26,21 +26,20 @@ struct RecordList: View {
 
     var body: some View {
         
-        ZStack (alignment: .bottomTrailing){
+//        ZStack (alignment: .bottomTrailing){
             NavigationView{
                 
                 List {
-                    ForEach(vitalrecords, id: \.self) {vitalrecord in
+//                    ForEach(vitalrecords, id: \.self) {vitalrecord in
+                    ForEach(vitalrecords) {vitalrecord in
                         RecordRow(vitalrecord: vitalrecord)
                     }
                     .onDelete(perform: onDelete)
-                    // 移動機能はなくす
-//                    .onMove(perform: onMove)
-                    
                 }
                 .navigationTitle("履歴")
                 .navigationBarTitleDisplayMode(/*@START_MENU_TOKEN@*/.inline/*@END_MENU_TOKEN@*/)
-                .navigationBarItems(trailing: EditButton())
+//                .navigationBarItems(trailing: EditButton())
+                .navigationBarItems(leading: EditButton(), trailing: addButton)
                 .environment(\.editMode, $editMode)
                 
             }
@@ -48,10 +47,9 @@ struct RecordList: View {
                 InputSheet(isSheet: $isSheet)
             }
             
-            addButton.padding()
+//            addButton.padding()
         }
-    }
-    
+//    }
     
     private var addButton: some View {
         // editModeに入ったときに、データ追加ビューに飛ぶとおかしくなるので
@@ -60,9 +58,9 @@ struct RecordList: View {
         case .inactive:
             return AnyView(Button(action: {
                 isSheet = true
-//            }) { Image(systemName: "pencil.tip.crop.circle.badge.plus").font(.largeTitle) })
-//            }) { Image(systemName: "plus.circle.fill").font(.largeTitle) })
-            }) { Image(systemName: "calendar.badge.plus").font(.largeTitle) })
+                //            }) { Image(systemName: "square.and.pencil").font(.title) })
+//            }) { Image(systemName: "calendar.badge.plus").font(.largeTitle) })
+            }) { Image(systemName: "calendar.badge.plus").font(.title) })
         default:
             return AnyView(EmptyView())
         }
@@ -82,12 +80,6 @@ struct RecordList: View {
         }
     }
     
-    // NOTE: 移動機能が必要か？要検討
-//    func onMove(source: IndexSet, destination: Int) {
-//        modelData.vitalrecords.move(fromOffsets: source, toOffset: destination)
-//    }
-    
-
 }
 
 
@@ -95,8 +87,6 @@ struct RecordList_Previews: PreviewProvider {
 
     static var previews: some View {
         RecordList().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-//            .environment(\.managedObjectContext, persistenceController.container.viewContext)
-//            .environmentObject(ModelData())
 
     }
 }

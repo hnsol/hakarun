@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RecordRow: View {
     @Environment(\.managedObjectContext) private var viewContext
-//    @EnvironmentObject(\.managedObjectContext) var viewContext
     var vitalrecord: VitalRecord
 
     @AppStorage("selectFormat")  var selectFormat = 0
@@ -25,12 +24,6 @@ struct RecordRow: View {
         df.dateFormat = "yyyy-MM-dd HH:mm"
         return df
     }
-
-    // 現在のビューがどの配列に入っているか、idxを取る（Bindせず）
-//    var index: Int {
-//        viewContext.vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
-//        vitalrecords.firstIndex(where: { $0.id == vitalrecord.id })!
-//    }
 
     var body: some View {
 
@@ -59,7 +52,7 @@ struct RecordRow: View {
                     }
             } else {
                 Image(systemName: "checkmark.seal")
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
                     .onTapGesture {
                         vitalrecord.isDone.toggle()
                         // ここでCoreDateへの保存を書くべきなのかもしれないが、
