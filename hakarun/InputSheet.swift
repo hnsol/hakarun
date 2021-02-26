@@ -23,7 +23,7 @@ struct InputSheet: View {
             Form {
                 
                 DatePicker(selection: $date, displayedComponents: .date,
-                           label: { Image(systemName: "calendar.badge.plus")})
+                           label: { Image(systemName: "calendar")})
                     .environment(\.locale, Locale(identifier: "ja_JP"))
                     .padding(.all)
                 

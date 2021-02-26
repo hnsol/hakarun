@@ -60,7 +60,9 @@ struct RecordList: View {
         case .inactive:
             return AnyView(Button(action: {
                 isSheet = true
-            }) { Image(systemName: "pencil.tip.crop.circle.badge.plus").font(.largeTitle) })
+//            }) { Image(systemName: "pencil.tip.crop.circle.badge.plus").font(.largeTitle) })
+//            }) { Image(systemName: "plus.circle.fill").font(.largeTitle) })
+            }) { Image(systemName: "calendar.badge.plus").font(.largeTitle) })
         default:
             return AnyView(EmptyView())
         }
