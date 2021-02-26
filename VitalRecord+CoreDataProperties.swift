@@ -16,9 +16,9 @@ extension VitalRecord {
         return NSFetchRequest<VitalRecord>(entityName: "VitalRecord")
     }
 
+    @NSManaged public var isDone: Bool
     @NSManaged public var temperature: String?
     @NSManaged public var timestamp: Date?
-    @NSManaged public var isDone: Bool
 
 }
 

@@ -41,6 +41,7 @@
 		2DC88CD525E898E100116B32 /* VitalRecord+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalRecord+CoreDataClass.swift"; sourceTree = "<group>"; };
 		2DC88CD625E898E100116B32 /* VitalRecord+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VitalRecord+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2DC88CDD25E8C0AC00116B32 /* Hakarun 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Hakarun 2.xcdatamodel"; sourceTree = "<group>"; };
+		2DC88CDF25E8CB0000116B32 /* Hakarun 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Hakarun 3.xcdatamodel"; sourceTree = "<group>"; };
 		2DFF38EB25DB9EDD00D528A7 /* hakarun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hakarun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2DFF38EE25DB9EDD00D528A7 /* hakarunApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hakarunApp.swift; sourceTree = "<group>"; };
 		2DFF38F025DB9EDD00D528A7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -402,10 +403,11 @@
 		2DC88CAD25E8888200116B32 /* Hakarun.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				2DC88CDF25E8CB0000116B32 /* Hakarun 3.xcdatamodel */,
 				2DC88CDD25E8C0AC00116B32 /* Hakarun 2.xcdatamodel */,
 				2DC88CAE25E8888200116B32 /* Hakarun.xcdatamodel */,
 			);
-			currentVersion = 2DC88CDD25E8C0AC00116B32 /* Hakarun 2.xcdatamodel */;
+			currentVersion = 2DC88CDF25E8CB0000116B32 /* Hakarun 3.xcdatamodel */;
 			path = Hakarun.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

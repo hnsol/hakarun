@@ -10,10 +10,9 @@ import CoreData
 
 struct RecordList: View {
 
-//    @EnvironmentObject var modelData: ModelData
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \VitalRecord.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \VitalRecord.timestamp, ascending: false)],
         animation: .default)
     private var vitalrecords: FetchedResults<VitalRecord>
 

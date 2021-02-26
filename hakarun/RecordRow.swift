@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RecordRow: View {
-//    @EnvironmentObject var modelData: ModelData
     @Environment(\.managedObjectContext) private var viewContext
 //    @EnvironmentObject(\.managedObjectContext) var viewContext
     var vitalrecord: VitalRecord
@@ -40,6 +39,7 @@ struct RecordRow: View {
             if selectFormat == 0 {
                 Text(dateFormat1.string(from: vitalrecord.timestamp!))
             } else {
+//                Text("\(vitalrecord.timestamp)")
                 Text(dateFormat2.string(from: vitalrecord.timestamp!))
             }
             
