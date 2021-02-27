@@ -61,6 +61,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D25C5E625E9C71B00F28BAA /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2DC88CAD25E8888200116B32 /* Hakarun.xcdatamodeld */,
+				2DC88CD625E898E100116B32 /* VitalRecord+CoreDataProperties.swift */,
+				2DC88CD525E898E100116B32 /* VitalRecord+CoreDataClass.swift */,
+				2DC88CD225E891F200116B32 /* Persistence.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		2D25C5E725E9C73F00F28BAA /* 􀈑 disposed */ = {
+			isa = PBXGroup;
+			children = (
+				2D891B3625E3C885001EC9BD /* rev01.swift */,
+				2D891B3325E3C816001EC9BD /* FileHandring.swift */,
+				2D891B4A25E3F302001EC9BD /* Model */,
+				2D891B5025E3F488001EC9BD /* Resources */,
+			);
+			path = "􀈑 disposed";
+			sourceTree = "<group>";
+		};
 		2D891B4A25E3F302001EC9BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -81,9 +103,6 @@
 		2DFF38E225DB9EDD00D528A7 = {
 			isa = PBXGroup;
 			children = (
-				2DC88CD525E898E100116B32 /* VitalRecord+CoreDataClass.swift */,
-				2DC88CD625E898E100116B32 /* VitalRecord+CoreDataProperties.swift */,
-				2DC88CAD25E8888200116B32 /* Hakarun.xcdatamodeld */,
 				2DFF38ED25DB9EDD00D528A7 /* hakarun */,
 				2DFF38EC25DB9EDD00D528A7 /* Products */,
 			);
@@ -100,20 +119,17 @@
 		2DFF38ED25DB9EDD00D528A7 /* hakarun */ = {
 			isa = PBXGroup;
 			children = (
+				2D25C5E625E9C71B00F28BAA /* CoreData */,
 				2DFF38EE25DB9EDD00D528A7 /* hakarunApp.swift */,
 				2DFF38F025DB9EDD00D528A7 /* ContentView.swift */,
 				2D891B3925E3C8FB001EC9BD /* RecordList.swift */,
 				2D891B5625E3FF7A001EC9BD /* RecordRow.swift */,
 				2D891B3C25E3D720001EC9BD /* InputSheet.swift */,
 				2D891B3F25E3E70D001EC9BD /* ConfigList.swift */,
-				2DC88CD225E891F200116B32 /* Persistence.swift */,
-				2D891B4A25E3F302001EC9BD /* Model */,
-				2D891B5025E3F488001EC9BD /* Resources */,
-				2D891B3625E3C885001EC9BD /* rev01.swift */,
-				2D891B3325E3C816001EC9BD /* FileHandring.swift */,
 				2DFF38F225DB9EDE00D528A7 /* Assets.xcassets */,
 				2DFF38F725DB9EDE00D528A7 /* Info.plist */,
 				2DFF38F425DB9EDE00D528A7 /* Preview Content */,
+				2D25C5E725E9C73F00F28BAA /* 􀈑 disposed */,
 			);
 			path = hakarun;
 			sourceTree = "<group>";
